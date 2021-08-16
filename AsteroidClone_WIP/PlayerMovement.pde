@@ -19,17 +19,17 @@ void PlayerMovement(){
   
   PlayerDecelerate();
   
-  if(PlayerX > 950){    //The player loops around when reaching the edge
-    PlayerX = 0;
+  if(PlayerX > 1000){    //The player loops around when reaching the edge
+    PlayerX = -50;
   }
-  if(PlayerX < 0){
-    PlayerX = 950;
+  if(PlayerX < -50){
+    PlayerX = 1000;
   }
-  if(PlayerY > 950){
-    PlayerY = 0;
+  if(PlayerY > 1000){
+    PlayerY = -50;
   }
-  if(PlayerY < 0){
-    PlayerY = 950;
+  if(PlayerY < -50){
+    PlayerY = 1000;
   }
 }
 
