@@ -10,7 +10,7 @@ boolean PlayerUp = false;
 
 void setup(){
   size(1000,1000);
-  frameRate(60);
+  frameRate(100);
   println("Setup run");
 }
 

@@ -1,31 +1,25 @@
 void PlayerMovement(){
   
-  if(PlayerUp == true){
-    PlayerSpeedY = -10;
+  if(PlayerUp == true){  //The player speeds up
+    PlayerSpeedY = -5;
   }
   if(PlayerDown == true){
-     PlayerSpeedY = 10;
-  }
-  if(PlayerUp == false && PlayerDown == false){
-    PlayerSpeedY = 0;
+     PlayerSpeedY = 5;
   }
   
   if(PlayerLeft == true){
-    PlayerSpeedX = -10;
+    PlayerSpeedX = -5;
   }
   if(PlayerRight == true){
-     PlayerSpeedX = 10;
-  }
-  if(PlayerLeft == false && PlayerRight == false){
-    PlayerSpeedX = 0;
+     PlayerSpeedX = 5;
   }
   
-  PlayerX = PlayerX + PlayerSpeedX;
+  PlayerX = PlayerX + PlayerSpeedX; //The player moves according to their speed
   PlayerY = PlayerY + PlayerSpeedY;
   
   PlayerDecelerate();
   
-  if(PlayerX > 950){
+  if(PlayerX > 950){    //The player loops around when reaching the edge
     PlayerX = 0;
   }
   if(PlayerX < 0){
@@ -39,7 +33,7 @@ void PlayerMovement(){
   }
 }
 
-void PlayerAccelerate(){
+void PlayerAccelerate(){      //Makes the player when when the key is pressed
    if(key == 'w'){
      PlayerUp = true;
      //println(" Key 'W' pressed");
@@ -60,7 +54,7 @@ void PlayerAccelerate(){
 
 
 
-void PlayerDecelerate(){               //Decelerates the player 
+void PlayerDecelerate(){               //The player slows down over a short timeframe
    PlayerSpeedX = PlayerSpeedX*0.95;
    PlayerSpeedY = PlayerSpeedY*0.95;
 }
