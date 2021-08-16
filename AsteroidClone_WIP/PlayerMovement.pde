@@ -1,17 +1,17 @@
 void PlayerMovement(){
   
-  if(PlayerUp == true){  //The player speeds up
-    PlayerSpeedY = -5;
+  if(PlayerUp == true && PlayerSpeedY > -5){  //The player speeds up
+    PlayerSpeedY -= 0.2;
   }
-  if(PlayerDown == true){
-     PlayerSpeedY = 5;
+  if(PlayerDown == true && PlayerSpeedY < 5){
+     PlayerSpeedY += 0.2;
   }
   
-  if(PlayerLeft == true){
-    PlayerSpeedX = -5;
+  if(PlayerLeft == true && PlayerSpeedX > -5){
+    PlayerSpeedX -= 0.2;
   }
-  if(PlayerRight == true){
-     PlayerSpeedX = 5;
+  if(PlayerRight == true && PlayerSpeedX < 5){
+     PlayerSpeedX += 0.2;
   }
   
   PlayerX = PlayerX + PlayerSpeedX; //The player moves according to their speed
@@ -55,8 +55,8 @@ void PlayerAccelerate(){      //Makes the player when when the key is pressed
 
 
 void PlayerDecelerate(){               //The player slows down over a short timeframe
-   PlayerSpeedX = PlayerSpeedX*0.95;
-   PlayerSpeedY = PlayerSpeedY*0.95;
+   PlayerSpeedX = PlayerSpeedX*0.98;
+   PlayerSpeedY = PlayerSpeedY*0.98;
 }
 
 

@@ -1,3 +1,6 @@
+PImage Background;      //Sprites
+
+
 float PlayerX = 475;  //Used under 'PlayerMovement' to figure out how the player moves
 float PlayerY = 475;
 float PlayerSpeedX = 0;
@@ -11,15 +14,15 @@ boolean PlayerUp = false;
 void setup(){
   size(1000,1000);
   frameRate(100);
-  println("Setup run");
+  Background = loadImage("Background.png");
+  println("Setup complete");
 }
 
 void draw(){
   clear();
-  background(100,200,100);
-  fill(200,100,100);
+  image(Background,0,0);
+  fill(200);
   rect(PlayerX,PlayerY,50,50);
-  
   PlayerMovement();
   PlayerAttack();
 }
