@@ -1,17 +1,17 @@
 void PlayerMovement(){
   
-  if(PlayerUp == true && PlayerSpeedY > -5){  //The player speeds up
-    PlayerSpeedY -= 0.2;
+  if(PlayerUp == true && PlayerSpeedY > -5/(height/1080)){  //The player speeds up
+    PlayerSpeedY -= (0.2/(height/1080))/(height/1080);
   }
-  if(PlayerDown == true && PlayerSpeedY < 5){
-     PlayerSpeedY += 0.2;
+  if(PlayerDown == true && PlayerSpeedY < 5/(height/1080)){
+     PlayerSpeedY += (0.2/(height/1080))/(height/1080);
   }
   
-  if(PlayerLeft == true && PlayerSpeedX > -5){
-    PlayerSpeedX -= 0.2;
+  if(PlayerLeft == true && PlayerSpeedX > -5/(width/1920)){
+    PlayerSpeedX -= (0.2/(width/1920))/(width/1920);
   }
-  if(PlayerRight == true && PlayerSpeedX < 5){
-     PlayerSpeedX += 0.2;
+  if(PlayerRight == true && PlayerSpeedX < 5/(width/1920)){
+     PlayerSpeedX += (0.2/(width/1920))/(width/1920);
   }
   
   PlayerX = PlayerX + PlayerSpeedX; //The player moves according to their speed
@@ -19,17 +19,17 @@ void PlayerMovement(){
   
   PlayerDecelerate();
   
-  if(PlayerX > 1000){    //The player loops around when reaching the edge
-    PlayerX = 0;
+  if(PlayerX > width+25/(width/1920)){    //The player loops around when reaching the edge
+    PlayerX = -25/(width/1920);
   }
-  if(PlayerX < 0){
-    PlayerX = 1000;
+  if(PlayerX < -25/(width/1920)){
+    PlayerX = width+25/(width/1920);
   }
-  if(PlayerY > 1000){
-    PlayerY = 0;
+  if(PlayerY > height+25/(height/1080)){
+    PlayerY = -25/(height/1080);
   }
-  if(PlayerY < 0){
-    PlayerY = 1000;
+  if(PlayerY < -25/(height/1080)){
+    PlayerY = height+25/(height/1080);
   }
 }
 

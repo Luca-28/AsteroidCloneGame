@@ -1,8 +1,8 @@
 PImage Background;      //Sprites
 
 
-float PlayerX = 500;  //Used under 'PlayerMovement' to figure out how the player moves
-float PlayerY = 500;
+float PlayerX;  //Used under 'PlayerMovement' to figure out how the player moves
+float PlayerY;
 float PlayerSpeedX = 0;
 float PlayerSpeedY = 0;
 boolean PlayerRight = false;
@@ -12,11 +12,13 @@ boolean PlayerUp = false;
 
 
 void setup(){
-  size(1000,1000);
+  fullScreen();
+  PlayerX = width/2;
+  PlayerY = height/2;
+  
   frameRate(100);
   
   Background = loadImage("Background.png");
-  
   
   rectMode(CENTER);
   println("Setup complete");
@@ -26,19 +28,19 @@ void draw(){
   clear();
   image(Background,0,0);
   fill(200);
-  rect(PlayerX,PlayerY,50,50);  //Draws the player and their "copies" for when crossing the edge of the screen
+  rect(PlayerX,PlayerY,50/(width/1920),50/(height/1080));  //Draws the player and their "copies" for when crossing the edge of the screen
   
-  rect(PlayerX+1000,PlayerY,50,50);
-  rect(PlayerX-1000,PlayerY,50,50);
-  rect(PlayerX,PlayerY+1000,50,50);
-  rect(PlayerX-1000,PlayerY,50,50);
-  rect(PlayerX+1000,PlayerY+1000,50,50);
-  rect(PlayerX-1000,PlayerY+1000,50,50);
-  rect(PlayerX-1000,PlayerY+1000,50,50);
-  rect(PlayerX-1000,PlayerY-1000,50,50);
-  
-  
-  
+  /*
+  fill(200);
+  rect(PlayerX+width,PlayerY,50/(width/1920),50/(height/1080)); //Draws "clones" of the player to preview moving across screen edges - Currently not used due to a an issue caused by processing not drawing when y < 0
+  rect(PlayerX-width,PlayerY,50/(width/1920),50/(height/1080));
+  rect(PlayerX,PlayerY+height,50/(width/1920),50/(height/1080));
+  rect(PlayerX,PlayerY-height,50/(width/1920),50/(height/1080));
+  rect(PlayerX+width,PlayerY+height,50/(width/1920),50/(height/1080));
+  rect(PlayerX+width,PlayerY-height,50/(width/1920),50/(height/1080));
+  rect(PlayerX-width,PlayerY+height,50/(width/1920),50/(height/1080));
+  rect(PlayerX-width,PlayerY-height,50/(width/1920),50/(height/1080));
+  */
   
   PlayerMovement();
   PlayerAttack();
