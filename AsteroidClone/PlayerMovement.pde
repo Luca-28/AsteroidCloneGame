@@ -1,35 +1,35 @@
 void PlayerMovement(){
   
-  if(PlayerUp == true && PlayerSpeedY > -5/(height/1080)){  //The player speeds up
-    PlayerSpeedY -= (0.2/(height/1080))/(height/1080);
+  if(PlayerUp == true && PlayerSpeedY > -5*Scale){  //The player speeds up
+    PlayerSpeedY -= (0.2*Scale);
   }
-  if(PlayerDown == true && PlayerSpeedY < 5/(height/1080)){
-     PlayerSpeedY += (0.2/(height/1080))/(height/1080);
-  }
-  
-  if(PlayerLeft == true && PlayerSpeedX > -5/(width/1920)){
-    PlayerSpeedX -= (0.2/(width/1920))/(width/1920);
-  }
-  if(PlayerRight == true && PlayerSpeedX < 5/(width/1920)){
-     PlayerSpeedX += (0.2/(width/1920))/(width/1920);
+  if(PlayerDown == true && PlayerSpeedY < 5*Scale){
+     PlayerSpeedY += (0.2*Scale);
   }
   
-  PlayerX = PlayerX + PlayerSpeedX; //The player moves according to their speed
-  PlayerY = PlayerY + PlayerSpeedY;
+  if(PlayerLeft == true && PlayerSpeedX > -5*Scale){
+    PlayerSpeedX -= (0.2*Scale);
+  }
+  if(PlayerRight == true && PlayerSpeedX < 5*Scale){
+     PlayerSpeedX += (0.2*Scale);
+  }
+  
+  PlayerX += PlayerSpeedX; //The player moves according to their speed
+  PlayerY += PlayerSpeedY;
   
   PlayerDecelerate();
   
-  if(PlayerX > width+25/(width/1920)){    //The player loops around when reaching the edge
-    PlayerX = -25/(width/1920);
+  if(PlayerX > width+25*Scale){    //The player loops around when reaching the edge
+    PlayerX = -25*Scale;
   }
-  if(PlayerX < -25/(width/1920)){
-    PlayerX = width+25/(width/1920);
+  if(PlayerX < -25*Scale){
+    PlayerX = width+25*Scale;
   }
-  if(PlayerY > height+25/(height/1080)){
-    PlayerY = -25/(height/1080);
+  if(PlayerY > height+25*Scale){
+    PlayerY = -25*Scale;
   }
-  if(PlayerY < -25/(height/1080)){
-    PlayerY = height+25/(height/1080);
+  if(PlayerY < -25*Scale){
+    PlayerY = height+25*Scale;
   }
 }
 
@@ -55,8 +55,8 @@ void PlayerAccelerate(){      //Makes the player when when the key is pressed
 
 
 void PlayerDecelerate(){               //The player slows down over a short timeframe
-   PlayerSpeedX = PlayerSpeedX*0.98;
-   PlayerSpeedY = PlayerSpeedY*0.98;
+   PlayerSpeedX *= 0.98;
+   PlayerSpeedY *= 0.98;
 }
 
 
