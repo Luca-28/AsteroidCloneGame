@@ -1,0 +1,7 @@
+void AsteroidMovement(){
+  
+}
+
+void AsteroidHitDetection(){
+  
+}

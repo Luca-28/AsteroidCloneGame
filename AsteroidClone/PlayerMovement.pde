@@ -34,19 +34,19 @@ void PlayerMovement(){
 }
 
 void PlayerAccelerate(){      //Makes the player when when the key is pressed
-   if(key == 'w'){
+   if(key == 'w' || key == 'W'){
      PlayerUp = true;
      //println(" Key 'W' pressed");
    }
-   if(key == 's'){
+   if(key == 's' || key == 'S'){
      PlayerDown = true;
      //println(" Key 'S' pressed");
    }
-   if(key == 'a'){
+   if(key == 'a' || key == 'A'){
      PlayerLeft = true;
      //println(" Key 'A' pressed");
    }
-   if(key == 'd'){
+   if(key == 'd' || key == 'D'){
      PlayerRight = true;
      //println(" Key 'D' pressed");
    }
@@ -62,19 +62,19 @@ void PlayerDecelerate(){               //The player slows down over a short time
 
 
 void PlayerMoveCheck(){      //Makes the player stop moving after releasing the key
-   if(key == 'w'){
+   if(key == 'w' || key == 'W'){
      PlayerUp = false;
      //println(" Key 'W' released");
    }
-   if(key == 's'){
+   if(key == 's' || key == 'S'){
      PlayerDown = false;
      //println(" Key 'S' released");
    }
-   if(key == 'a'){
+   if(key == 'a' || key == 'A'){
      PlayerLeft = false;
      //println(" Key 'A' released");
    }
-   if(key == 'd'){
+   if(key == 'd' || key == 'D'){
      PlayerRight = false;
      //println(" Key 'D' released");
    }

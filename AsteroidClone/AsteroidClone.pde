@@ -9,8 +9,14 @@ boolean PlayerRight = false;
 boolean PlayerDown = false;
 boolean PlayerLeft = false;
 boolean PlayerUp = false;
+  
+boolean AttackActive = false;
+float AttackX;  //Defines the position of the player attack
+float AttackY;
+float AttackSpeedX;
+float AttackSpeedY;
 
-int Scale = 1;
+int Scale = 1;  //Sets the scale to be consistent across all resolutions.
 
 void setup(){
   fullScreen();
@@ -21,12 +27,15 @@ void setup(){
   frameRate(100);
   
   Background = loadImage("Background.png");
+  println("Background image loaded");
   
   rectMode(CENTER);
   println("Setup complete");
 }
 
 void draw(){
+  float PlayerAngle = atan2(mouseY - PlayerY, mouseX - PlayerX)* 180/ PI;
+  println("Angle = " + PlayerAngle);
   clear();
   image(Background,0,0);
   fill(200);
@@ -44,11 +53,25 @@ void draw(){
   rect(PlayerX-width,PlayerY-height,50*Scale,50*Scale);
   */
   
+  circle(AttackX,AttackY,20);
+  
   PlayerMovement();
-  PlayerAttack();
+  
+  AttackX += AttackSpeedX;
+  AttackY += AttackSpeedY;
+  
+  AsteroidHitDetection();
+  AsteroidMovement();
 }
 
 void keyPressed(){
+  PlayerAccelerate();
+  if(key == ' '){
+    PlayerAttackAction();
+  }
+}
+
+void keyCode(){
   PlayerAccelerate();
 }
 
