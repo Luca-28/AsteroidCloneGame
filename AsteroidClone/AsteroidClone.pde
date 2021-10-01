@@ -24,7 +24,7 @@ void setup(){
   PlayerX = width/2;
   PlayerY = height/2;
   
-  frameRate(100);
+  frameRate(120);
   
   Background = loadImage("Background.png");
   println("Background image loaded");
