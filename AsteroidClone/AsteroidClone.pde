@@ -1,5 +1,6 @@
 PImage Background;      //Sprites
-
+PImage Spaceship;
+PImage Attack;
 
 float PlayerX;  //Used under 'PlayerMovement' to figure out how the player moves
 float PlayerY;
@@ -11,9 +12,10 @@ boolean PlayerLeft = false;
 boolean PlayerUp = false;
 
 float PlayerAngle;
+
 boolean AttackActive = false;
-float AttackX;  //Defines the position of the player attack
-float AttackY;
+float AttackX = -100;  //Defines the position of the player attack
+float AttackY = -100;;
 float AttackSpeedX;
 float AttackSpeedY;
 
@@ -26,9 +28,11 @@ void setup(){
   frameRate(120);
   
   Background = loadImage("Background.png");
-  println("Background image loaded");
+  Spaceship = loadImage("Spaceship_Large.png");
+  Attack = loadImage("Attack_Large.png");
   
   rectMode(CENTER);
+  imageMode(CENTER);
   println("Setup complete");
 }
 
@@ -37,16 +41,17 @@ void draw(){
   //println("Angle = " + PlayerAngle);
   
   clear();
-  image(Background,0,0);
+  image(Background,width/2,height/2);
   
   pushMatrix();
   translate(PlayerX,PlayerY);  //Rotates the player to follow the mouseposition
-  rotate(radians(PlayerAngle));
+  rotate(radians(PlayerAngle+90));
   fill(200);
-  rect(0,0,50,50);  //Draws the player
+  //scale(10);
+  image(Spaceship,0,0);  //Draws the player
   popMatrix();
   
-  circle(AttackX,AttackY,20);
+  image(Attack,AttackX,AttackY); //Draws the attack
   
   PlayerMovement();
   
