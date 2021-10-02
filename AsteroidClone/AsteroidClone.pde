@@ -9,18 +9,17 @@ boolean PlayerRight = false;
 boolean PlayerDown = false;
 boolean PlayerLeft = false;
 boolean PlayerUp = false;
-  
+
+float PlayerAngle;
 boolean AttackActive = false;
 float AttackX;  //Defines the position of the player attack
 float AttackY;
 float AttackSpeedX;
 float AttackSpeedY;
 
-int Scale = 1;  //Sets the scale to be consistent across all resolutions.
 
 void setup(){
   fullScreen();
-  Scale = width/1920; //Sets the scale for the game
   PlayerX = width/2;
   PlayerY = height/2;
   
@@ -34,31 +33,25 @@ void setup(){
 }
 
 void draw(){
-  float PlayerAngle = atan2(mouseY - PlayerY, mouseX - PlayerX)* 180/ PI;
-  println("Angle = " + PlayerAngle);
+  PlayerAngle = atan2(mouseY - PlayerY, mouseX - PlayerX)* 180/ PI;
+  //println("Angle = " + PlayerAngle);
+  
   clear();
   image(Background,0,0);
-  fill(200);
-  rect(PlayerX,PlayerY,50*Scale,50*Scale);  //Draws the player and their "copies" for when crossing the edge of the screen
   
-  /*
+  pushMatrix();
+  translate(PlayerX,PlayerY);  //Rotates the player to follow the mouseposition
+  rotate(radians(PlayerAngle));
   fill(200);
-  rect(PlayerX+width,PlayerY,50*Scale,50*Scale); //Draws "clones" of the player to preview moving across screen edges - Currently not used due to a an issue caused by processing not drawing when y < 0
-  rect(PlayerX-width,PlayerY,50*Scale,50*Scale);
-  rect(PlayerX,PlayerY+height,50*Scale,50*Scale);
-  rect(PlayerX,PlayerY-height,50*Scale,50*Scale);
-  rect(PlayerX+width,PlayerY+height,50*Scale,50*Scale);
-  rect(PlayerX+width,PlayerY-height,50*Scale,50*Scale);
-  rect(PlayerX-width,PlayerY+height,50*Scale,50*Scale);
-  rect(PlayerX-width,PlayerY-height,50*Scale,50*Scale);
-  */
+  rect(0,0,50,50);  //Draws the player
+  popMatrix();
   
   circle(AttackX,AttackY,20);
   
   PlayerMovement();
   
   AttackX += AttackSpeedX;
-  AttackY += AttackSpeedY;
+  AttackY += AttackSpeedY; 
   
   AsteroidHitDetection();
   AsteroidMovement();
