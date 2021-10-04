@@ -37,7 +37,7 @@ void setup(){
   
   frameRate(120);
   
-  PlayerSize = 3;
+  PlayerSize = 1;
   
   Background = loadImage("Background.png");
   Spaceship_Large = loadImage("Spaceship_Large.png");
@@ -59,24 +59,30 @@ void draw(){
   
   //if(OldAngle < PI && OldAngle > 0){  //Enables smooth transition over the PI to -PI border
     
-  }
+ //}
   
   OldAngle = MouseAngle;
   clear();
   image(Background,width/2,height/2);
   
-  pushMatrix();
+  pushMatrix();   //Draws the attack
   translate(AttackX,AttackY);
   rotate(AttackAngle+radians(90));
-  image(Attack_Large,0,0); //Draws the attack
+   if(PlayerSize == 1){
+    image(Attack_Small,0,0);
+  } else if(PlayerSize == 2){
+    image(Attack_Medium,0,0);
+  } else if(PlayerSize == 3){
+    image(Attack_Large,0,0);
+  }
   popMatrix();
   
   AttackX += AttackSpeedX;
   AttackY += AttackSpeedY;
   
   
-  if(MouseAngle-PlayerAngle < radians(5) && MouseAngle-PlayerAngle > radians(0)){
-    //Don't rotate
+  if(MouseAngle-PlayerAngle < radians(10) && MouseAngle-PlayerAngle > radians(0)){
+    //Don't rotate when within 10 degrees of proper rotation
   } else if(MouseAngle > PlayerAngle){  //Rotates the player smoothly
     PlayerAngle += radians(10)/PlayerSize;
   } else if(MouseAngle < PlayerAngle){
@@ -85,11 +91,17 @@ void draw(){
   
   text(PlayerAngle,width/2,height/2);
   
-  pushMatrix();
+  pushMatrix();  //Draws the player
   translate(PlayerX,PlayerY);  //Rotates the player to follow the mouseposition
   rotate(PlayerAngle+radians(90));
   fill(200);
-  image(Spaceship_Large,0,0);  //Draws the player
+  if(PlayerSize == 1){
+    image(Spaceship_Small,0,0);
+  } else if(PlayerSize == 2){
+    image(Spaceship_Medium,0,0);
+  } else if(PlayerSize == 3){
+    image(Spaceship_Large,0,0);
+  }
   popMatrix();
     PlayerMovement();
   
