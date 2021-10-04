@@ -14,8 +14,8 @@ void PlayerMovement(){
      PlayerSpeedX += (0.2);
   }
   
-  PlayerX += PlayerSpeedX; //The player moves according to their speed
-  PlayerY += PlayerSpeedY;
+  PlayerX += PlayerSpeedX/PlayerSize; //The player moves according to their speed
+  PlayerY += PlayerSpeedY/PlayerSize;
   
   PlayerDecelerate();
   
