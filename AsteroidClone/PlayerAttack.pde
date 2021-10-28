@@ -9,3 +9,20 @@ void PlayerAttackAction(){
   }
   
 }
+
+void DrawAttack(){
+  pushMatrix();
+  translate(AttackX,AttackY);
+  rotate(AttackAngle+radians(90));
+   if(PlayerSize == 1){
+    image(Attack_Small,0,0);
+  } else if(PlayerSize == 2){
+    image(Attack_Medium,0,0);
+  } else if(PlayerSize == 3){
+    image(Attack_Large,0,0);
+  }
+  popMatrix();
+  
+  AttackX += AttackSpeedX;  //Moves the attack
+  AttackY += AttackSpeedY;
+}

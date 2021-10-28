@@ -30,6 +30,8 @@ float AttackSpeedY;
 
 
 void setup(){
+  //noCursor();
+  cursor(CROSS);
   fullScreen();
   PlayerX = width/2;
   PlayerY = height/2;
@@ -52,68 +54,15 @@ void setup(){
   println("Setup complete");
 }
 
-void draw(){
-  MouseAngle = atan2(mouseY - PlayerY, mouseX - PlayerX)* 180/ PI;
-  MouseAngle = radians(MouseAngle);
-  
-  
+void draw(){  
   clear();
   image(Background,width/2,height/2);
   
-  pushMatrix();   //Draws the attack
-  translate(AttackX,AttackY);
-  rotate(AttackAngle+radians(90));
-   if(PlayerSize == 1){
-    image(Attack_Small,0,0);
-  } else if(PlayerSize == 2){
-    image(Attack_Medium,0,0);
-  } else if(PlayerSize == 3){
-    image(Attack_Large,0,0);
-  }
-  popMatrix();
+  RotatePlayer();
+  DrawPlayer();
+  PlayerMovement();
   
-  AttackX += AttackSpeedX;
-  AttackY += AttackSpeedY;
-  
-  
-  if(MouseAngle-PlayerAngle < radians(10) && MouseAngle-PlayerAngle > radians(0)){
-    //Don't rotate when within 10 degrees of proper rotation
-    
-  } else if((MouseAngle - PlayerAngle) > PI){  //Rotates properly past the border from negative to positive (and back)
-    PlayerAngle -= radians(10)/PlayerSize;
-    
-  } else if((MouseAngle - PlayerAngle) < -PI){
-    PlayerAngle += radians(10)/PlayerSize;
-    
-  }else if(MouseAngle > PlayerAngle){  //Rotates the player smoothly
-    PlayerAngle += radians(10)/PlayerSize;
-    
-  } else if(MouseAngle < PlayerAngle){
-    PlayerAngle -= radians(10)/PlayerSize;
-    
-  }
-  if(PlayerAngle > PI){  //Stops infinite spin
-    PlayerAngle -= 2*PI;
-  } else if(PlayerAngle < -PI){
-    PlayerAngle += 2*PI;
-  }
-  
-  text(PlayerAngle,width/2,height/2);
-  
-  pushMatrix();  //Draws the player
-  translate(PlayerX,PlayerY);  //Rotates the player to follow the mouseposition
-  rotate(PlayerAngle+radians(90));
-  fill(200);
-  if(PlayerSize == 1){
-    image(Spaceship_Small,0,0);
-  } else if(PlayerSize == 2){
-    image(Spaceship_Medium,0,0);
-  } else if(PlayerSize == 3){
-    image(Spaceship_Large,0,0);
-  }
-  popMatrix();
-    PlayerMovement();
-  
+  DrawAttack();
   
   AsteroidHitDetection();
   AsteroidMovement();

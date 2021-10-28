@@ -79,3 +79,44 @@ void PlayerMoveCheck(){      //Makes the player stop moving after releasing the 
      //println(" Key 'D' released");
    }
 }
+
+void RotatePlayer(){
+  MouseAngle = radians(atan2(mouseY - PlayerY, mouseX - PlayerX)* 180/ PI);  //Checks which angle to the player the mouse is at
+  
+  if(MouseAngle-PlayerAngle < radians(10) && MouseAngle-PlayerAngle > radians(-10)){
+    //Don't rotate when within 10 degrees of proper rotation  -  Prevents jittering on border between positive and negative radians
+    
+  } else if((MouseAngle - PlayerAngle) > PI){  //Rotates properly past the border from negative to positive (and back)
+    PlayerAngle -= radians(10)/PlayerSize;
+    
+  } else if((MouseAngle - PlayerAngle) < -PI){
+    PlayerAngle += radians(10)/PlayerSize;
+    
+  }else if(MouseAngle > PlayerAngle){  //Rotates the player smoothly
+    PlayerAngle += radians(10)/PlayerSize;
+    
+  } else if(MouseAngle < PlayerAngle){
+    PlayerAngle -= radians(10)/PlayerSize;
+    
+  }
+  if(PlayerAngle > PI){  //Stops infinite spin
+    PlayerAngle -= 2*PI;
+  } else if(PlayerAngle < -PI){
+    PlayerAngle += 2*PI;
+  }
+}
+
+void DrawPlayer(){
+  pushMatrix();  //Draws the player
+  translate(PlayerX,PlayerY);  //Rotates the player to follow the mouseposition
+  rotate(PlayerAngle+radians(90));
+  fill(200);
+  if(PlayerSize == 1){
+    image(Spaceship_Small,0,0);
+  } else if(PlayerSize == 2){
+    image(Spaceship_Medium,0,0);
+  } else if(PlayerSize == 3){
+    image(Spaceship_Large,0,0);
+  }
+  popMatrix();
+}
